@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/10 border border-white/10;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #ff7a00 0%, #ff9a3d 50%, #5e91ff 100%);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #ff7a00 0%, #5e91ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .nav-item {
+    @apply relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg;
+  }
+  
+  .nav-item::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary transform scale-x-0 transition-transform duration-300;
+  }
+  
+  .nav-item:hover::after {
+    @apply scale-x-100;
+  }
+  
+  /* Accessibility enhancements */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-saffron-500 focus:ring-offset-2;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .gradient-text {
+      background: none;
+      -webkit-text-fill-color: #000;
+      color: #000;
+    }
+    
+    .glass, .glass-dark {
+      backdrop-filter: none;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #000;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-pulse-glow,
+    .card-hover {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+  
+  /* Large text support */
+  @media (max-width: 640px) {
+    .text-5xl {
+      @apply text-3xl;
+    }
+    .text-4xl {
+      @apply text-2xl;
+    }
+    .text-3xl {
+      @apply text-xl;
+    }
+    .text-xl {
+      @apply text-lg;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 122, 0, 0.6);
+  }
+}
+
+/* Custom Colors */
+.bg-saffron-100 {
+  background-color: rgba(255, 122, 0, 0.1);
+}
+
+.text-saffron-600 {
+  color: rgb(255, 122, 0);
+}
+
+.bg-saffron-200 {
+  background-color: rgba(255, 122, 0, 0.2);
+}
+
+.bg-navy-500 {
+  background-color: rgb(94, 145, 255);
+}
+
+.hover\:bg-navy-600:hover {
+  background-color: rgb(79, 130, 255);
+}
