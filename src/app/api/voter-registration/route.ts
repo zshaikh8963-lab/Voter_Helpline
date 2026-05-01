@@ -128,11 +128,16 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    mockApplications[applicationIndex] = {
+    const updatedApplication = {
       ...mockApplications[applicationIndex],
-      status: status as string,
-      ...(status === 'approved' && { completedDate: new Date().toISOString().split('T')[0] })
+      status: status as string
     }
+    
+    if (status === 'approved') {
+      updatedApplication.completedDate = new Date().toISOString().split('T')[0]
+    }
+    
+    mockApplications[applicationIndex] = updatedApplication
 
     return NextResponse.json({
       message: 'Application status updated successfully',
