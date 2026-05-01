@@ -89,12 +89,12 @@ export async function POST(request: NextRequest) {
     }
 
     console.log('OpenRouter response received:', {
-      hasChoices: !!completion.choices,
-      choiceCount: completion.choices?.length,
-      hasContent: !!completion.choices?.[0]?.message?.content
+      hasChoices: !!completion?.choices,
+      choiceCount: completion?.choices?.length,
+      hasContent: !!completion?.choices?.[0]?.message?.content
     });
 
-    const aiResponse = completion.choices[0]?.message?.content || 'I apologize, but I cannot process your request at the moment.'
+    const aiResponse = completion?.choices?.[0]?.message?.content || 'I apologize, but I cannot process your request at the moment.'
 
     return NextResponse.json({
       response: aiResponse,

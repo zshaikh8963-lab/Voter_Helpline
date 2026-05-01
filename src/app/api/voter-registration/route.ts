@@ -130,9 +130,7 @@ export async function PUT(request: NextRequest) {
 
     mockApplications[applicationIndex] = {
       ...mockApplications[applicationIndex],
-      status,
-      notes,
-      lastUpdated: new Date().toISOString(),
+      status: status as string,
       ...(status === 'approved' && { completedDate: new Date().toISOString().split('T')[0] })
     }
 

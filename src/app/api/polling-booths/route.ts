@@ -181,11 +181,11 @@ export async function GET(request: NextRequest) {
       pollingBooths: filteredBooths,
       stats,
       filters: {
-        constituency: [...new Set(mockPollingBooths.map(b => b.constituency))],
-        district: [...new Set(mockPollingBooths.map(b => b.district))],
-        state: [...new Set(mockPollingBooths.map(b => b.state))],
+        constituency: Array.from(new Set(mockPollingBooths.map(b => b.constituency))),
+        district: Array.from(new Set(mockPollingBooths.map(b => b.district))),
+        state: Array.from(new Set(mockPollingBooths.map(b => b.state))),
         crowdLevels: ['low', 'medium', 'high'],
-        facilities: [...new Set(mockPollingBooths.flatMap(b => b.facilities))]
+        facilities: Array.from(new Set(mockPollingBooths.flatMap(b => b.facilities)))
       }
     })
 
